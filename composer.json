@@ -7,12 +7,6 @@
             "Tests\\": "tests/"
         }
     },
-    "require": {
-        "php": ">=7.4",
-        "ext-psr": "*",
-        "ext-phalcon": "*",
-        "ext-mbstring": "*"
-    },
     "require-dev": {
         "phalcon/migrations": "^1.2",
         "phpunit/phpunit": "^9.0",

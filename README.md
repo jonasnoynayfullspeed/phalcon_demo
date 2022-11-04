@@ -1,5 +1,19 @@
 # Phalcon MVC Framework DEMO
 
+## **How to install**
+### Run this command
+```
+docker-compose up -d
+```
+### Once done, run:
+```
+docker exec -it app composer install
+```
+### Access this link to your browser
+```
+http://localhost:8080/
+```
+
 ## **Implementations**
 ###  Dependency Injection / Service Location
 #### ***Phalcon\Di***
