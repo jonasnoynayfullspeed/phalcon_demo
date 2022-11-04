@@ -1,0 +1,22 @@
+paths:
+    tests: tests
+    output: tests/_output
+    data: tests/_data
+    support: tests/_support
+    envs: tests/_envs
+actor_suffix: Tester
+bootstrap: _bootstrap.php
+settings:
+    memory_limit: 20M
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+modules:
+    enabled:
+        - Db:
+              dsn: 'mysql:host=mysql;dbname=phalcon_app'
+              user: 'root'
+              password: 'root'
+              cleanup: true # run populator before each test
+              populate: true # run populator before all test
+              dump: tests/_data/dump.sql

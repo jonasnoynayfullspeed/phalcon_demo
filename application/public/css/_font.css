@@ -1,0 +1,22 @@
+@font-face {
+    font-family: Gilda Display;
+    src: url(fonts/GildaDisplay-Regular.ttf);
+}
+
+@font-face {
+    font-family: Jost;
+    src: url(fonts/Jost-VariableFont_wght.ttf);
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Jost;
+    src: url(fonts/Jost-Italic-VariableFont_wght.ttf);
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Aspire;
+    src: url(fonts/Aspire-DemiBold.ttf);
+    font-style: normal;
+}

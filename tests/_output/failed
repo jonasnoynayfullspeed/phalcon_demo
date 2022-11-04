@@ -1,0 +1,2 @@
+tests/functional/LoginCest.php:tryToTest
+tests/functional/SignupCest.php:tryToTest
