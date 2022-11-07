@@ -2,23 +2,16 @@
 declare(strict_types=1);
 
 use Phalcon\Escaper;
-use Phalcon\Flash\Direct as Flash;
-use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Mvc\View;
+use Phalcon\Mvc\Dispatcher;
+use Phalcon\Url as UrlResolver;
+use Phalcon\Flash\Direct as Flash;
+use Phalcon\Events\Manager as EventsManager;
 use Phalcon\Mvc\View\Engine\Php as PhpEngine;
+use Phalcon\Session\Manager as SessionManager;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Session\Adapter\Stream as SessionAdapter;
-use Phalcon\Session\Manager as SessionManager;
-use Phalcon\Url as UrlResolver;
-use Phalcon\Mvc\Dispatcher;
-use Phalcon\Events\Manager as EventsManager;
-
-/**
- * Shared configuration service
- */
-$di->setShared('config', function () {
-    return include APP_PATH . "/config/config.php";
-});
+use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 
 /**
  * The URL component is used to generate all kind of urls in the application
@@ -30,6 +23,23 @@ $di->setShared('url', function () {
     $url->setBaseUri($config->application->baseUri);
 
     return $url;
+});
+
+$di->setShared('s3', function () {
+
+    $s3 = new S3([
+        'version' => 'latest',
+        'region'  => 'ap-southeast-1',
+        'credentials' => [
+            'key' => $_ENV['S3_KEY'],
+            'secret' => $_ENV['S3_SECRET'],
+        ]
+    ]);
+
+    $s3->setBucket($_ENV['S3_BUCKET']);
+    $s3->setCloudFrontUrl($_ENV['CLOUDFRONT_URL']);
+
+    return $s3;
 });
 
 /**

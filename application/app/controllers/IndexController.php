@@ -12,11 +12,6 @@ class IndexController extends ControllerBase
         $this->view->archiveLinks = Articles::getAllArchiveLinks();
     }
 
-    public function thankyouAction()
-    {
-        echo 'hello';
-    }
-
     public function indexAction()
     {
 

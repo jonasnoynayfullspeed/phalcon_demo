@@ -86,7 +86,7 @@ class SecurityPlugin extends Injectable
 
         //Public area resources
         $publicResources = [
-            'index'      => ['index', 'thankyou'],
+            'index'      => ['*'],
             'auth'       => ['login', 'signup', 'register', 'authorize'],
             'blogs'      => ['category', 'archive', 'author', 'show', 'search'],
             'articles'   => ['*'],

@@ -79,7 +79,7 @@
                       <div class="col-xl-2 col-lg-2 col-sm-7 col-9 navbar-outer">
                         <form class="d-flex" style="margin-top: -5px;">
                             {%- if session.user != null -%}
-                            {{ linkTo(['blogs/search', 'Create Blog', 'class' : 'btn btn-outline-success']) }}
+                            {{ linkTo(['blogs/create', 'Create Blog', 'class' : 'btn btn-outline-success']) }}
                             {{ linkTo(['auth/logout', 'Logout', 'class' : 'btn btn-outline-danger ms-2']) }}
                             {%- else -%}
                             {{ linkTo(['auth/login', 'Log In', 'class' : 'btn btn-outline-success']) }}

@@ -7,6 +7,14 @@
 defined('BASE_PATH') || define('BASE_PATH', getenv('BASE_PATH') ?: realpath(dirname(__FILE__) . '/../..'));
 defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
+try {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../..');
+    $dotenv->load();
+} catch (Exception $e) {
+    echo $e->getMessage();
+    exit;
+}
+
 return new \Phalcon\Config([
     'database' => [
         'adapter'     => 'Mysql',
@@ -25,6 +33,7 @@ return new \Phalcon\Config([
         'pluginsDir'     => APP_PATH . '/plugins/',
         'libraryDir'     => APP_PATH . '/library/',
         'cacheDir'       => BASE_PATH . '/cache/',
+        'servicesDir'    => BASE_PATH . '/services/',
         'baseUri'        => '/',
         'migrationsTsBased' => true
     ]

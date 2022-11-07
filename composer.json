@@ -15,5 +15,9 @@
         "codeception/module-asserts": "^1.0",
         "codeception/codeception": "^4.1",
         "codeception/module-db": "1.0.0"
+    },
+    "require": {
+        "aws/aws-sdk-php": "^3.240",
+        "vlucas/phpdotenv": "^5.5"
     }
 }

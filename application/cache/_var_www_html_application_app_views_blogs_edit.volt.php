@@ -18,7 +18,7 @@
             <div class="form-group mb-3">
                 <label for="email">Banner Image</label>
                 <?php echo \Phalcon\Tag::fileField(['banner', 'placeholder' => '', 'class' => 'form-control', 'accept' => 'image/*']) ?>
-                <p>{{ blog.banner }}</p>
+                <p><?= $blog->banner ?></p>
             </div>
           </div>
           <div class="col-md-6 col-sm-6">
@@ -28,14 +28,14 @@
             </div>
               <div class="form-group mb-3">
                   <label for="password">Content</label>
-                  <textarea id="editor" class="form-control" name="content" rows="5">{{ blog.content }}</textarea>
+                  <textarea id="editor" class="form-control" name="content" rows="5"><?= $blog->content ?></textarea>
               </div>
           </div>
           
           <div class="col-md-6 col align-self-end">
               <button type="submit" class="btn btn-primary">Submit</button>
               <button type="button" class="btn btn-warning">Discard Changes</button>
-              {{ linkTo(['blogs/delete/'~blog.id, 'Delete Article', 'class' : 'btn btn-danger' , 'onclick' : 'return confirm("Are you sure you want to delete this article?")']) }}
+              <?= $this->tag->linkto(['blogs/delete/' . $blog->id, 'Delete Article', 'class' => 'btn btn-danger', 'onclick' => 'return confirm("Are you sure you want to delete this article?")']) ?>
           </div>
          
   </div>

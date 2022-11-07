@@ -37,14 +37,38 @@ class BlogsController extends ControllerBase
             //Create a new article
             $article = new Articles();
 
+            $file = $_FILES['banner'] ?? null;
+
+            if(! $file) {
+                $this->flash->error('Please select a file.');
+
+                return $this->dispatcher->forward(['controller' => 'blogs', 'action' => 'create']);
+            }
+
+            $result = $this->s3->putObject(
+                'uploads/' . $file['name'],
+                file_get_contents($file['tmp_name'])
+            );
+
+            if(! $result) {
+                $this->flash->error('Upload failed.');
+
+                return $this->dispatcher->forward(['controller' => 'blogs', 'action' => 'create']);
+            }
+           
+
+            $values = $this->request->getPost();
+
+            $values['banner'] = $this->s3->getUrl();
+
             //Assign / validate article
             $article->assign(
-                $this->request->getPost(),
+                $values,
                 [
                     'title',
                     'summary',
                     'banner',
-                    'content',
+                    'content'
                 ]
             );
 
@@ -140,6 +164,8 @@ class BlogsController extends ControllerBase
 
     public function editAction($id = 0)
     {
+        $this->view->header = 'Edit';
+
         $article = Articles::findFirst($id);
         
         if(!$article || $article->user_id != $this->session->user->id)
@@ -161,8 +187,34 @@ class BlogsController extends ControllerBase
 
             $this->db->begin();
 
+            $file = $_FILES['banner'] ?? null;
+
+            $deleteRes = $this->s3->deleteObject(str_replace($this->s3->cloudFrontUrl, '', $article->banner));
+
+            if(! $file) {
+                $this->flash->error('Please select a file.');
+
+                return $this->dispatcher->forward(['controller' => 'blogs', 'action' => 'create']);
+            }
+
+            $result = $this->s3->putObject(
+                'uploads/' . $file['name'],
+                file_get_contents($file['tmp_name'])
+            );
+
+            if(! $result) {
+                $this->flash->error('Upload failed.');
+
+                return $this->dispatcher->forward(['controller' => 'blogs', 'action' => 'create']);
+            }
+           
+
+            $values = $this->request->getPost();
+
+            $values['banner'] = $this->s3->getUrl();
+
             $article->assign(
-                $this->request->getPost(),
+                $values,
                 [
                     'title',
                     'summary',

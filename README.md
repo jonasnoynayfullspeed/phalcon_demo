@@ -14,6 +14,14 @@ docker exec -it app composer install
 http://localhost:8080/
 ```
 
+### Add .env file with this value
+```
+S3_KEY=AKIAUPHKQ5HGKBZQOQ7Y
+S3_SECRET=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
+S3_BUCKET=phalcon-demo
+CLOUDFRONT_URL=https://d3lrxacytioeh0.cloudfront.net/
+```
+
 ## **Implementations**
 ###  Dependency Injection / Service Location
 #### ***Phalcon\Di***

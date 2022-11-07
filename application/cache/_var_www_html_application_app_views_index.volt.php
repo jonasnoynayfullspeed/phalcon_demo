@@ -77,7 +77,7 @@
                         </div>         
                       </div>
                       <div class="col-xl-2 col-lg-2 col-sm-7 col-9 navbar-outer">
-                        <form class="d-flex" style="margin-top: -5px;"><?php if ($this->session->user != null) { ?><?= $this->tag->linkto(['blogs/search', 'Create Blog', 'class' => 'btn btn-outline-success']) ?>
+                        <form class="d-flex" style="margin-top: -5px;"><?php if ($this->session->user != null) { ?><?= $this->tag->linkto(['blogs/create', 'Create Blog', 'class' => 'btn btn-outline-success']) ?>
                             <?= $this->tag->linkto(['auth/logout', 'Logout', 'class' => 'btn btn-outline-danger ms-2']) ?><?php } else { ?><?= $this->tag->linkto(['auth/login', 'Log In', 'class' => 'btn btn-outline-success']) ?><?php } ?></form>
                       </div>
                 </div>
